@@ -27,19 +27,28 @@
     max-width: 30vh;
 }
 
-.App-instructions {
+body {
     background-color: #f8f8f8;
     color: #222;
     font-size: 2.5vh;
     line-height: 1.5;
-    padding: 0 1em;
+}
+
+.App-instructions {
     display: flex;
     flex-direction: column;
     flex: 5;
 }
 
-.App-instructions p {
-    width: 50%;
+.App-instructions p,
+.benchmark p {
+    width: 70%;
+    margin-bottom: 0px;
+    /* padding-bottom: 1em; */
+}
+
+.benchmark p {
+    margin: 1em auto;
 }
 
 .App-instructions code {
@@ -47,4 +56,27 @@
     color: #00d8ff;
     padding: 0.2em 0.3em;
     border-radius: 0.2em;
+}
+
+hr {
+    border: 1px solid #555;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.benchmark-scratchpad {
+    width: 93vw;
+    overflow: auto;
+    margin: 0 auto;
+}
+
+.benchmark-scratchpad div {
+    font-size: 0.8em;
+    padding: 0.2em 0.3em;
+    display: inline-block;
 }

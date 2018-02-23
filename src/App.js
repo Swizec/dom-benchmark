@@ -1,7 +1,9 @@
 import "./App.css";
+import "./buttons.css";
 
 import React, { Component, Fragment } from "react";
 import GitHubForkRibbon from "react-github-fork-ribbon";
+import ReactBenchmark from "./benchmarks/ReactBenchmark";
 
 class App extends Component {
     render() {
@@ -43,15 +45,19 @@ class App extends Component {
                             <li>Preact</li>
                         </ul>
                         <p>
-                            Don't worry, benchmarks are implemented on their own
-                            internally. I'm just using React for the skeleton
-                            because it's what I'm used to. You can see{" "}
+                            Don't worry, benchmarks are implemented in the
+                            respective framework internally. I'm just using
+                            React for the skeleton because it's what I'm used to
+                            and <code>nwb</code> made it quick to set up
+                            compiling and stuff. You can see{" "}
                             <a href="https://github.com/Swizec/dom-benchmark">
                                 the code on GitHub
                             </a>.
                         </p>
                         <hr />
                     </div>
+                    <ReactBenchmark />
+                    <div style={{ padding: "3vh" }} />
                 </div>
             </Fragment>
         );
