@@ -21,9 +21,28 @@ class App extends Component {
                     </div>
                     <div className="App-instructions App-flex">
                         <p>
-                            Below are a few benchmarks. Each benchmark performs
-                            a few types of operations and records how long it
-                            takes. We 👇
+                            Hi 👋<br />I was recently asked to improve chatroom
+                            performance. The longer chats became, the more users
+                            complained that everything is sluggish.
+                        </p>
+                        <p>
+                            The chatroom was built in Backbone and jQuery and{" "}
+                            <a href="https://swizec.com/blog/build-list-virtualization/swizec/8167">
+                                I tried many ways to make it better
+                            </a>. Everything was hard and cumbersome. In the end
+                            I realized that re-rendering the whole list of
+                            messages, even without a smart framework, is fast
+                            enough. That made me wonder
+                        </p>
+                        <p>
+                            <em style={{ fontSize: "1.2em" }}>
+                                "Did the DOM get fast?"
+                            </em>{" "}
+                            🧐
+                        </p>
+                        <p>
+                            Below are a few benchmarks. Click buttons to see
+                            your own results. Charts for what I saw. :)
                         </p>
                         <ul>
                             <li>create a long list</li>
