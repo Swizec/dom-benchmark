@@ -58,13 +58,14 @@ class VanillaBenchmark extends Component {
     naiveRender() {
         let start = new Date();
         // remove all existing nodes
+        // from https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
         let scratchpad = this.refs.scratchpad;
 
-        // from https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
         while (scratchpad.firstChild) {
             scratchpad.removeChild(scratchpad.firstChild);
         }
 
+        // append all nodes from scratch
         this.nodes.forEach(k => {
             let node = document.createElement("div");
             node.appendChild(document.createTextNode(k));
@@ -74,6 +75,7 @@ class VanillaBenchmark extends Component {
         let end = new Date();
         this.times.push(end - start);
 
+        // update meta info
         this.refs.time.innerHTML = `<code>${end - start}ms</code>`;
         this.refs.currentCount.innerHTML = this.nodes.length;
         this.refs.avgTime.innerHTML = this.averageTime;

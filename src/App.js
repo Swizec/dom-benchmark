@@ -6,6 +6,7 @@ import GitHubForkRibbon from "react-github-fork-ribbon";
 
 import ReactBenchmark from "./benchmarks/ReactBenchmark";
 import VanillaBenchmark from "./benchmarks/VanillaBenchmark";
+import SmartVanillaBenchmark from "./benchmarks/SmartVanillaBenchmark";
 
 class App extends Component {
     render() {
@@ -79,6 +80,7 @@ class App extends Component {
                     </div>
                     <ReactBenchmark />
                     <VanillaBenchmark />
+                    <SmartVanillaBenchmark />
                     <h2>Vue coming soon ...</h2>
                     <h2>Preact coming soon ...</h2>
                     <div style={{ padding: "3vh" }} />
