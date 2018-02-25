@@ -3,7 +3,9 @@ import "./buttons.css";
 
 import React, { Component, Fragment } from "react";
 import GitHubForkRibbon from "react-github-fork-ribbon";
+
 import ReactBenchmark from "./benchmarks/ReactBenchmark";
+import VanillaBenchmark from "./benchmarks/VanillaBenchmark";
 
 class App extends Component {
     render() {
@@ -76,6 +78,9 @@ class App extends Component {
                         <hr />
                     </div>
                     <ReactBenchmark />
+                    <VanillaBenchmark />
+                    <h2>Vue coming soon ...</h2>
+                    <h2>Preact coming soon ...</h2>
                     <div style={{ padding: "3vh" }} />
                 </div>
             </Fragment>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ButtonsRow from "../ButtonsRow";
 
 const N = 1000;
 
@@ -93,31 +94,25 @@ class ReactBenchmark extends Component {
                 <h2>React</h2>
                 <p>
                     Implemented as a single component, no state management lib.
-                    Time measured between <code>componentWillUpdate</code> and{" "}
+                    Time measured time is between{" "}
+                    <code>componentWillUpdate</code> and{" "}
                     <code>componentDidUpdate</code>
                 </p>
                 <p>
                     Time to render: <b ref="time" />
                     <br />
+                    Current count: <code>{nodes.length}</code>
+                    <br />
                     Average time: <code>{this.averageTime}ms</code>
                 </p>
-                <div className="row">
-                    <button onClick={this.prepend} className="pulse">
-                        Prepend {N} nodes
-                    </button>
-                    <button onClick={this.insert} className="pulse">
-                        Insert {N} nodes
-                    </button>
-                    <button onClick={this.append} className="pulse">
-                        Append {N} nodes
-                    </button>
-                    <button onClick={this.drop} className="pulse">
-                        Drop {nodes.length} nodes
-                    </button>
-                    <button onClick={this.remove} className="pulse">
-                        Remove 1 node
-                    </button>
-                </div>
+                <ButtonsRow
+                    prepend={this.prepend}
+                    insert={this.insert}
+                    append={this.append}
+                    drop={this.drop}
+                    remove={this.remove}
+                    N={N}
+                />
                 <div className="row benchmark-scratchpad">
                     {nodes.map((k, i) => <div key={k}>{k}</div>)}
                 </div>
@@ -135,7 +130,7 @@ class ReactBenchmark extends Component {
                     <br />
                     Avg time to drop 30,000 nodes: <code>195ms</code>
                     <br />
-                    Avg time to remove 1 node from 0,000: <code>27ms</code>
+                    Avg time to remove 1 node from 30,000: <code>27ms</code>
                 </p>
             </div>
         );

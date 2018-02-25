@@ -47,6 +47,10 @@ body {
     /* padding-bottom: 1em; */
 }
 
+.benchmark {
+    padding-top: 50px;
+}
+
 .benchmark p {
     margin: 1em auto;
 }
