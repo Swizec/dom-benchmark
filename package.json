@@ -12,6 +12,7 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
+    "preact": "^8.2.7",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-github-fork-ribbon": "^0.5.1"
