@@ -184,7 +184,7 @@ class Wrapper extends React.Component {
     }
 
     renderPreact() {
-        Preact.render(<PreactBenchmark />, this.refs.anchor);
+        Preact.render(<PreactBenchmark />, this.refs.anchor, this.refs.anchor.firstChild);
     }
 
     render() {
