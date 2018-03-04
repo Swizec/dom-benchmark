@@ -120,9 +120,9 @@ class PreactBenchmark extends Preact.Component {
                         Preact component is wrapped in a React component
                     </a>{" "}
                     to fit into the project and handles its own rendering
-                    internally. Time measured time is between{" "}
+                    internally. Time measured is between{" "}
                     <code>componentWillUpdate</code> and{" "}
-                    <code>componentDidUpdate</code>
+                    <code>componentDidUpdate</code> inside the Preact part.
                 </p>
                 <p>
                     Time to render:{" "}
@@ -182,9 +182,17 @@ class Wrapper extends React.Component {
     componentDidUpdate() {
         this.renderPreact();
     }
+    // Jason's recommendation https://github.com/Swizec/dom-benchmark/pull/2
+    shouldComponentUpdate() {
+        return false;
+    }
 
     renderPreact() {
-        Preact.render(<PreactBenchmark />, this.refs.anchor, this.refs.anchor.firstChild);
+        Preact.render(
+            <PreactBenchmark />,
+            this.refs.anchor,
+            this.refs.anchor.firstChild
+        );
     }
 
     render() {
