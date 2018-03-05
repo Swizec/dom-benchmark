@@ -15,7 +15,11 @@
     "preact": "^8.2.7",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-github-fork-ribbon": "^0.5.1"
+    "react-github-fork-ribbon": "^0.5.1",
+    "vue": "^2.5.13",
+    "vue-loader": "^14.1.1",
+    "vue-template-compiler": "^2.5.13",
+    "vuera": "^0.2.1"
   },
   "devDependencies": {
     "nwb": "0.21.x"

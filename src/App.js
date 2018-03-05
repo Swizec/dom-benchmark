@@ -8,6 +8,7 @@ import ReactBenchmark from "./benchmarks/ReactBenchmark";
 import VanillaBenchmark from "./benchmarks/VanillaBenchmark";
 import SmartVanillaBenchmark from "./benchmarks/SmartVanillaBenchmark";
 import PreactBenchmark from "./benchmarks/PreactBenchmark";
+import VueBenchmark from "./benchmarks/VueBenchmarkWrapper";
 
 class App extends Component {
     render() {
@@ -83,7 +84,7 @@ class App extends Component {
                     <VanillaBenchmark />
                     <SmartVanillaBenchmark />
                     <PreactBenchmark />
-                    <h2>Vue coming soon ...</h2>
+                    <VueBenchmark />
                     <div style={{ padding: "3vh" }} />
                 </div>
             </Fragment>
