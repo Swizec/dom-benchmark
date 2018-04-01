@@ -4,88 +4,57 @@ import "./buttons.css";
 import React, { Component, Fragment } from "react";
 import GitHubForkRibbon from "react-github-fork-ribbon";
 
-import ReactBenchmark from "./benchmarks/ReactBenchmark";
-import VanillaBenchmark from "./benchmarks/VanillaBenchmark";
-import SmartVanillaBenchmark from "./benchmarks/SmartVanillaBenchmark";
-import PreactBenchmark from "./benchmarks/PreactBenchmark";
-import VueBenchmark from "./benchmarks/VueBenchmarkWrapper";
+import Benchmarks from "./benchmarks";
+import IntroCopy from "./IntroCopy";
+
+import { createStore, firebaseMiddleware } from "blockchain-redux";
+import * as firebase from "firebase";
+import benchmarkReducer from "./benchmarkReducer";
+
+import BlockchainContext from "./BlockchainContext";
+
+const FirebaseApp = firebase.initializeApp({
+    apiKey: "AIzaSyB_QA9xmUVXbF79oW4ZJEcT4NDQTIXmJjM",
+    databaseURL: "https://blockchain-dom-benchmark.firebaseio.com",
+    projectId: "blockchain-dom-benchmark"
+});
 
 class App extends Component {
+    blockchain = {};
+
+    componentDidMount = async () => {
+        this.blockchain = await createStore(
+            benchmarkReducer,
+            firebaseMiddleware(FirebaseApp)
+        );
+
+        this.unsubscribe = this.blockchain.subscribe(() => {
+            console.log("Hello");
+            this.forceUpdate();
+        });
+        this.forceUpdate();
+    };
+
+    componentWillUnmount() {
+        this.unsubscribe();
+    }
+
     render() {
+        console.log("in render", this.blockchain);
+
         return (
             <Fragment>
                 <GitHubForkRibbon href="https://github.com/Swizec/dom-benchmark">
                     Fork me on GitHub
                 </GitHubForkRibbon>
                 <div className="App">
-                    <div className="App-heading App-flex">
-                        <h2>
-                            Let's benchmark the{" "}
-                            <span className="App-react">DOM</span>
-                        </h2>
-                    </div>
-                    <div className="App-instructions App-flex">
-                        <p>
-                            Hi 👋<br />I was recently asked to improve chatroom
-                            performance. The longer chats became, the more users
-                            complained that everything is sluggish.
-                        </p>
-                        <p>
-                            The chatroom was built in Backbone and jQuery and{" "}
-                            <a href="https://swizec.com/blog/build-list-virtualization/swizec/8167">
-                                I tried many ways to make it better
-                            </a>. Everything was hard and cumbersome. In the end
-                            I realized that re-rendering the whole list of
-                            messages, even without a smart framework, is fast
-                            enough. That made me wonder
-                        </p>
-                        <p>
-                            <em style={{ fontSize: "1.2em" }}>
-                                "Did the DOM get fast?"
-                            </em>{" "}
-                            🧐
-                        </p>
-                        <p>
-                            Below are a few benchmarks. Click buttons to see
-                            your own results. Charts for what I saw. :)
-                        </p>
-                        <ul>
-                            <li>create a long list</li>
-                            <li>append to it</li>
-                            <li>prepend to it</li>
-                            <li>insert in the middle</li>
-                            <li>remove elements</li>
-                        </ul>
-                        <p>
-                            Benchmarks focus on long flat lists of nodes because
-                            that's pretty common. Think chat window with
-                            thousands of messages. Our goal is to find which is
-                            faster
-                        </p>
-                        <ul>
-                            <li>Raw DOM with vanilla JS</li>
-                            <li>React</li>
-                            <li>Vue</li>
-                            <li>Preact</li>
-                        </ul>
-                        <p>
-                            Don't worry, benchmarks are implemented in the
-                            respective framework internally. I'm just using
-                            React for the skeleton because it's what I'm used to
-                            and <code>nwb</code> made it quick to set up
-                            compiling and stuff. You can see{" "}
-                            <a href="https://github.com/Swizec/dom-benchmark">
-                                the code on GitHub
-                            </a>.
-                        </p>
-                        <hr />
-                    </div>
-                    <ReactBenchmark />
-                    <VanillaBenchmark />
-                    <SmartVanillaBenchmark />
-                    <PreactBenchmark />
-                    <VueBenchmark />
-                    <div style={{ padding: "3vh" }} />
+                    <BlockchainContext.Provider value={this.blockchain}>
+                        <IntroCopy />
+
+                        <Benchmarks />
+
+                        <div style={{ padding: "3vh" }} />
+                    </BlockchainContext.Provider>
                 </div>
             </Fragment>
         );

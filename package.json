@@ -1,30 +1,32 @@
 {
-  "name": "dom-benchmark",
-  "version": "1.0.0",
-  "description": "Describe dom-benchmark here",
-  "private": true,
-  "scripts": {
-    "build": "nwb build-react-app",
-    "clean": "nwb clean-app",
-    "start": "nwb serve-react-app",
-    "test": "nwb test-react",
-    "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server"
-  },
-  "dependencies": {
-    "preact": "^8.2.7",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-github-fork-ribbon": "^0.5.1",
-    "vue": "^2.5.13",
-    "vue-loader": "^14.1.1",
-    "vue-template-compiler": "^2.5.13",
-    "vuera": "^0.2.1"
-  },
-  "devDependencies": {
-    "nwb": "0.21.x"
-  },
-  "author": "",
-  "license": "MIT",
-  "repository": ""
+    "name": "dom-benchmark",
+    "version": "1.0.0",
+    "description": "Describe dom-benchmark here",
+    "private": true,
+    "scripts": {
+        "build": "nwb build-react-app",
+        "clean": "nwb clean-app",
+        "start": "nwb serve-react-app",
+        "test": "nwb test-react",
+        "test:coverage": "nwb test-react --coverage",
+        "test:watch": "nwb test-react --server"
+    },
+    "dependencies": {
+        "blockchain-redux": "^0.2.0",
+        "firebase": "^4.12.1",
+        "preact": "^8.2.7",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
+        "react-github-fork-ribbon": "^0.5.1",
+        "vue": "^2.5.13",
+        "vue-loader": "^14.1.1",
+        "vue-template-compiler": "^2.5.13",
+        "vuera": "^0.2.1"
+    },
+    "devDependencies": {
+        "nwb": "0.21.x"
+    },
+    "author": "",
+    "license": "MIT",
+    "repository": ""
 }
