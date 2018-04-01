@@ -21,12 +21,12 @@ class VanillaBenchmark extends Component {
 
     prepend = () => {
         this.nodes = [...this.newNodes, ...this.nodes];
-        this.naiveRender();
+        this.naiveRender("prepend1000");
     };
 
     append = () => {
         this.nodes = [...this.nodes, ...this.newNodes];
-        this.naiveRender();
+        this.naiveRender("append1000");
     };
 
     insert = () => {
@@ -36,12 +36,12 @@ class VanillaBenchmark extends Component {
             ...this.newNodes,
             ...nodes.slice(nodes.length / 2, nodes.length)
         ];
-        this.naiveRender();
+        this.naiveRender("insert1000");
     };
 
     drop = () => {
         this.nodes = [];
-        this.naiveRender();
+        this.naiveRender("dropAll");
     };
 
     remove = () => {
@@ -52,10 +52,10 @@ class VanillaBenchmark extends Component {
             ...nodes.slice(0, pivot),
             ...nodes.slice(pivot + 1, nodes.length)
         ];
-        this.naiveRender();
+        this.naiveRender("remove1");
     };
 
-    naiveRender() {
+    naiveRender(type) {
         let start = new Date();
         // remove all existing nodes
         // from https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
@@ -79,6 +79,11 @@ class VanillaBenchmark extends Component {
         this.refs.time.innerHTML = `<code>${end - start}ms</code>`;
         this.refs.currentCount.innerHTML = this.nodes.length;
         this.refs.avgTime.innerHTML = this.averageTime;
+        this.props.addToBenchmark({
+            name: this.props.name,
+            value: end - start,
+            type
+        });
     }
 
     render() {
