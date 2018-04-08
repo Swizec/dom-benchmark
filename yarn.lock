@@ -1345,11 +1345,10 @@ block-stream@*:
     inherits "~2.0.0"
 
 blockchain-redux@^0.2.0:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/blockchain-redux/-/blockchain-redux-0.2.2.tgz#4aa10f79ce69a5cf883ac54121c4329b3f475d4c"
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/blockchain-redux/-/blockchain-redux-0.2.4.tgz#ea37b65de83c268ec6599ab4a0af11eb1a7a7cef"
   dependencies:
     crypto-js "^3.1.9-1"
-    firebase "^4.12.1"
 
 bluebird@^3.1.1, bluebird@^3.3.0, bluebird@^3.4.6, bluebird@^3.4.7, bluebird@^3.5.1:
   version "3.5.1"

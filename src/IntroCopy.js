@@ -12,11 +12,8 @@ export default () => (
         </div>
         <div className="App-instructions App-flex">
             <BlockchainContext.Consumer>
-                {({ _blockchain }) => (
-                    <p>
-                        There are {(_blockchain && _blockchain.length) || 0}{" "}
-                        nodes on the chain
-                    </p>
+                {({ getWholeChain = () => [] }) => (
+                    <p>There are {getWholeChain().length} nodes on the chain</p>
                 )}
             </BlockchainContext.Consumer>
             <p>

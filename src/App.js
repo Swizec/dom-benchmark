@@ -13,16 +13,16 @@ import benchmarkReducer from "./benchmarkReducer";
 
 import BlockchainContext from "./BlockchainContext";
 
-const FirebaseApp = firebase.initializeApp({
-    apiKey: "AIzaSyB_QA9xmUVXbF79oW4ZJEcT4NDQTIXmJjM",
-    databaseURL: "https://blockchain-dom-benchmark.firebaseio.com",
-    projectId: "blockchain-dom-benchmark"
-});
-
 class App extends Component {
     blockchain = {};
 
     componentDidMount = async () => {
+        const FirebaseApp = firebase.initializeApp({
+            apiKey: "AIzaSyB_QA9xmUVXbF79oW4ZJEcT4NDQTIXmJjM",
+            databaseURL: "https://blockchain-dom-benchmark.firebaseio.com",
+            projectId: "blockchain-dom-benchmark"
+        });
+
         this.blockchain = await createStore(
             benchmarkReducer,
             firebaseMiddleware(FirebaseApp)
@@ -41,6 +41,10 @@ class App extends Component {
 
     render() {
         console.log("in render", this.blockchain);
+
+        if (this.blockchain.getState) {
+            console.log("Current state", this.blockchain.getState());
+        }
 
         return (
             <Fragment>
