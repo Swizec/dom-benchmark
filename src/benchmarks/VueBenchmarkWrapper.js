@@ -2,4 +2,10 @@ import React from "react";
 import { VueWrapper } from "vuera";
 import VueBenchmark from "./VueBenchmark.vue";
 
-export default () => <VueWrapper component={VueBenchmark} />;
+export default ({ name, addToBenchmark }) => (
+    <VueWrapper
+        component={VueBenchmark}
+        name={name}
+        addToBenchmark={addToBenchmark}
+    />
+);

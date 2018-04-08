@@ -9,7 +9,8 @@ class ReactBenchmark extends Component {
     times = [];
 
     state = {
-        nodes: []
+        nodes: [],
+        lastChangeType: null
     };
 
     componentWillUpdate() {
@@ -37,6 +38,12 @@ class ReactBenchmark extends Component {
 
         this.refs.time.innerHTML = `<code>${delta}ms</code>`;
         this.times.push(delta);
+
+        this.props.addToBenchmark({
+            name: this.props.name,
+            value: delta,
+            type: this.state.lastChangeType
+        });
     }
 
     get newNodes() {
@@ -57,7 +64,8 @@ class ReactBenchmark extends Component {
 
     append = () =>
         this.setState({
-            nodes: [...this.state.nodes, ...this.newNodes]
+            nodes: [...this.state.nodes, ...this.newNodes],
+            lastChangeType: "append1000"
         });
 
     insert = () => {
@@ -68,11 +76,16 @@ class ReactBenchmark extends Component {
                 ...nodes.slice(0, nodes.length / 2),
                 ...this.newNodes,
                 ...nodes.slice(nodes.length / 2, nodes.length)
-            ]
+            ],
+            lastChangeType: "insert1000"
         });
     };
 
-    drop = () => this.setState({ nodes: [] });
+    drop = () =>
+        this.setState({
+            nodes: [],
+            lastChangeType: "dropAll"
+        });
 
     remove = () => {
         const { nodes } = this.state,
@@ -82,7 +95,8 @@ class ReactBenchmark extends Component {
             nodes: [
                 ...nodes.slice(0, pivot),
                 ...nodes.slice(pivot + 1, nodes.length)
-            ]
+            ],
+            lastChangeType: "remove1"
         });
     };
 

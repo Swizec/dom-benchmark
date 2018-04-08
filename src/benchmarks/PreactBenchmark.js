@@ -30,7 +30,8 @@ class PreactBenchmark extends Preact.Component {
     times = [];
 
     state = {
-        nodes: []
+        nodes: [],
+        lastChangeType: null
     };
 
     componentWillUpdate() {
@@ -58,6 +59,12 @@ class PreactBenchmark extends Preact.Component {
 
         this.timeToRenderRef.innerHTML = `<code>${delta}ms</code>`;
         this.times.push(delta);
+
+        this.props.addToBenchmark({
+            name: this.props.name,
+            value: delta,
+            type: this.state.lastChangeType
+        });
     }
 
     get newNodes() {
@@ -73,12 +80,14 @@ class PreactBenchmark extends Preact.Component {
 
     prepend = () =>
         this.setState({
-            nodes: [...this.newNodes, ...this.state.nodes]
+            nodes: [...this.newNodes, ...this.state.nodes],
+            lastChangeType: "prepend1000"
         });
 
     append = () =>
         this.setState({
-            nodes: [...this.state.nodes, ...this.newNodes]
+            nodes: [...this.state.nodes, ...this.newNodes],
+            lastChangeType: "append1000"
         });
 
     insert = () => {
@@ -89,11 +98,16 @@ class PreactBenchmark extends Preact.Component {
                 ...nodes.slice(0, nodes.length / 2),
                 ...this.newNodes,
                 ...nodes.slice(nodes.length / 2, nodes.length)
-            ]
+            ],
+            lastChangeType: "insert1000"
         });
     };
 
-    drop = () => this.setState({ nodes: [] });
+    drop = () =>
+        this.setState({
+            nodes: [],
+            lastChangeType: "dropAll"
+        });
 
     remove = () => {
         const { nodes } = this.state,
@@ -103,7 +117,8 @@ class PreactBenchmark extends Preact.Component {
             nodes: [
                 ...nodes.slice(0, pivot),
                 ...nodes.slice(pivot + 1, nodes.length)
-            ]
+            ],
+            lastChangeType: "remove1"
         });
     };
 
@@ -188,8 +203,10 @@ class Wrapper extends React.Component {
     }
 
     renderPreact() {
+        const { name, addToBenchmark } = this.props;
+
         Preact.render(
-            <PreactBenchmark />,
+            <PreactBenchmark name={this.props.name} />,
             this.refs.anchor,
             this.refs.anchor.firstChild
         );

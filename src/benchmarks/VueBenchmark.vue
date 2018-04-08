@@ -45,12 +45,14 @@
 
 <script>
 module.exports = {
+    props: ["name", "addToBenchmark"],
     data: function() {
         return {
             nodes: [],
             start: null,
             times: [],
-            N: 1000
+            N: 1000,
+            lastChangeType: null
         };
     },
     created() {
@@ -79,6 +81,12 @@ module.exports = {
 
             this.$refs.timeToRender.innerHTML = `${timeToRender}ms`;
             this.$refs.averageTime.innerHTML = `${this.averageTime()}ms`;
+
+            this.addToBenchmark({
+                name: this.name,
+                value: timeToRender,
+                type: this.lastChangeType
+            });
         },
 
         averageTime() {
@@ -95,10 +103,12 @@ module.exports = {
 
         prepend() {
             this.nodes = [...this.newNodes(), ...this.nodes];
+            this.lastChangeType = "prepend1000";
         },
 
         append() {
             this.nodes = [...this.nodes, ...this.newNodes()];
+            this.lastChangeType = "append1000";
         },
 
         insert() {
@@ -109,10 +119,12 @@ module.exports = {
                 ...this.newNodes(),
                 ...nodes.slice(nodes.length / 2, nodes.length)
             ];
+            this.lastChangeType = "insert1000";
         },
 
         drop() {
             this.nodes = [];
+            this.lastChangeType = "dropAll";
         },
 
         remove() {
@@ -123,6 +135,7 @@ module.exports = {
                 ...nodes.slice(0, pivot),
                 ...nodes.slice(pivot + 1, nodes.length)
             ];
+            this.lastChangeType = "remove1";
         }
     }
 };

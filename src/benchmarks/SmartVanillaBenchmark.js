@@ -33,7 +33,7 @@ class VanillaBenchmark extends Component {
         });
         scratchpad.prepend(nodes);
 
-        this.updateMeta(start);
+        this.updateMeta("prepend1000", start);
     };
 
     append = () => {
@@ -50,7 +50,7 @@ class VanillaBenchmark extends Component {
         });
         scratchpad.append(nodes);
 
-        this.updateMeta(start);
+        this.updateMeta("append1000", start);
     };
 
     insert = () => {
@@ -84,7 +84,7 @@ class VanillaBenchmark extends Component {
             scratchpad.insertBefore(node, pivotNode);
         });
 
-        this.updateMeta(start);
+        this.updateMeta("insert1000", start);
     };
 
     drop = () => {
@@ -99,7 +99,7 @@ class VanillaBenchmark extends Component {
             scratchpad.removeChild(scratchpad.firstChild);
         }
 
-        this.updateMeta(start);
+        this.updateMeta("dropAll", start);
     };
 
     remove = () => {
@@ -119,16 +119,22 @@ class VanillaBenchmark extends Component {
             scratchpad.removeChild(node);
         }
 
-        this.updateMeta(start);
+        this.updateMeta("remove1", start);
     };
 
-    updateMeta(start, end = new Date()) {
+    updateMeta(type, start, end = new Date()) {
         this.times.push(end - start);
 
         // update meta info
         this.refs.time.innerHTML = `<code>${end - start}ms</code>`;
         this.refs.currentCount.innerHTML = this.nodes.length;
         this.refs.avgTime.innerHTML = this.averageTime;
+
+        this.props.addToBenchmark({
+            name: this.props.name,
+            value: end - start,
+            type
+        });
     }
 
     render() {
