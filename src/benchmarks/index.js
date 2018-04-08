@@ -6,12 +6,10 @@ import SmartVanillaBenchmark from "./SmartVanillaBenchmark";
 import PreactBenchmark from "./PreactBenchmark";
 import VueBenchmark from "./VueBenchmarkWrapper";
 
-import BlockchainContext from "../BlockchainContext";
-
 class Benchmarks extends React.Component {
-    addToBenchmark = (blockchain, { name, type, value }) => {
+    addToBenchmark = ({ name, type, value }) => {
         // how do I get access to blockchain which is in new context API
-        blockchain.dispatch({
+        this.props.blockchain.dispatch({
             actionType: "ADD_BENCHMARK",
             name,
             type,
@@ -21,22 +19,28 @@ class Benchmarks extends React.Component {
 
     render() {
         return (
-            <BlockchainContext.Consumer>
-                {blockchain => (
-                    <React.Fragment>
-                        <VanillaBenchmark
-                            name="vanilla"
-                            addToBenchmark={vals =>
-                                this.addToBenchmark(blockchain, vals)
-                            }
-                        />
-                        <SmartVanillaBenchmark />
-                        <ReactBenchmark />
-                        <PreactBenchmark />
-                        <VueBenchmark />
-                    </React.Fragment>
-                )}
-            </BlockchainContext.Consumer>
+            <React.Fragment>
+                <VanillaBenchmark
+                    name="vanilla"
+                    addToBenchmark={vals => this.addToBenchmark(vals)}
+                />
+                <SmartVanillaBenchmark
+                    name="smart"
+                    addToBenchmark={vals => this.addToBenchmark(vals)}
+                />
+                <ReactBenchmark
+                    name="react"
+                    addToBenchmark={vals => this.addToBenchmark(vals)}
+                />
+                <PreactBenchmark
+                    name="preact"
+                    addToBenchmark={vals => this.addToBenchmark(vals)}
+                />
+                <VueBenchmark
+                    name="vue"
+                    addToBenchmark={vals => this.addToBenchmark(vals)}
+                />
+            </React.Fragment>
         );
     }
 }

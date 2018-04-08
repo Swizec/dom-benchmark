@@ -1344,9 +1344,9 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-blockchain-redux@^0.2.0:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/blockchain-redux/-/blockchain-redux-0.2.4.tgz#ea37b65de83c268ec6599ab4a0af11eb1a7a7cef"
+blockchain-redux@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/blockchain-redux/-/blockchain-redux-0.3.0.tgz#88bded45303720528348d9f4ac3b65ae76757e07"
   dependencies:
     crypto-js "^3.1.9-1"
 

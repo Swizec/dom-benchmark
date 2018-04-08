@@ -55,7 +55,11 @@ class App extends Component {
                     <BlockchainContext.Provider value={this.blockchain}>
                         <IntroCopy />
 
-                        <Benchmarks />
+                        <BlockchainContext.Consumer>
+                            {blockchain => (
+                                <Benchmarks blockchain={blockchain} />
+                            )}
+                        </BlockchainContext.Consumer>
 
                         <div style={{ padding: "3vh" }} />
                     </BlockchainContext.Provider>
